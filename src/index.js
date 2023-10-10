@@ -1,1 +1,3 @@
-console.log('hi')
+import { getWeatherData } from "./modules/utils/getWeatherData";
+
+getWeatherData() 
