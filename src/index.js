@@ -1,4 +1,4 @@
-import { getWeatherData } from "./modules/utils/getWeatherData";
+import { getCityCoordinatesAsync } from "./modules/utils/weatherService";
 
 
 const searchBtn = document.querySelector('#search-btn')
@@ -17,17 +17,19 @@ function cleanInput(input) {
 
 
 // gets input value from user on btn click
-function getInputValue() {
+async function getInputValue() {
   const value = document.querySelector('#search-input').value
   const cleanVal = cleanInput(value)
 
-  const coords = getWeatherData(cleanVal)
+  const coords =  await getCityCoordinatesAsync(cleanVal) 
+
+  const lat = coords[0]
+  const lon = coords[1]
+
+
  
 
-  clearInputValue() 
-
-  console.log(cleanVal)
-  console.log(coords)
+  clearInputValue()
 }
 
 
