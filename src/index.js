@@ -1,4 +1,5 @@
-import { getCityCoordinatesAsync } from "./modules/utils/weatherService";
+import { getWeatherDataAsync } from "./modules/utils/weatherService";
+import { kToF } from "./modules/utils/converters";
 
 
 const searchBtn = document.querySelector('#search-btn')
@@ -21,10 +22,25 @@ async function getInputValue() {
   const value = document.querySelector('#search-input').value
   const cleanVal = cleanInput(value)
 
-  const coords =  await getCityCoordinatesAsync(cleanVal) 
+  const obj = await getWeatherDataAsync(cleanVal)
 
-  const lat = coords[0]
-  const lon = coords[1]
+  console.log(obj) 
+  
+  // get fahrenheit
+  const fahrenheit = kToF(obj.main.temp) 
+  
+  const feelsLike = kToF(obj.main.feels_like)
+
+  const humidity = obj.main.humidity
+
+  console.log(`${fahrenheit}`)
+  console.log(`${feelsLike}`)
+  console.log(`${humidity}`)
+  console.log(`${humidity}`) 
+
+  // // get feels like
+  // const feelsLike = kToF(obj.main.feels_like)
+  // const fahrenheitRounded = Math.round(kToF(obj.main.temp))
 
 
  
