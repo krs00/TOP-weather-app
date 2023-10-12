@@ -1,5 +1,5 @@
 import { getWeatherDataAsync } from "./modules/utils/weatherService";
-import { kToF } from "./modules/utils/converters";
+import { kelToFahrenheit } from "./modules/utils/convert";
 
 
 const searchBtn = document.querySelector('#search-btn')
@@ -27,23 +27,24 @@ async function getInputValue() {
   console.log(obj) 
   
   // get fahrenheit
-  const fahrenheit = kToF(obj.main.temp) 
+  const fahrenheit = kelToFahrenheit(obj.main.temp) 
   
-  const feelsLike = kToF(obj.main.feels_like)
+  const feelsLike = kelToFahrenheit(obj.main.feels_like)
 
   const humidity = obj.main.humidity
+
+  const windSpeed = obj.wind.speed
+
+  const weatherDesc = obj.weather[0].main 
+
+  const weatherDescSub = obj.weather[0].description
 
   console.log(`${fahrenheit}`)
   console.log(`${feelsLike}`)
   console.log(`${humidity}`)
-  console.log(`${humidity}`) 
-
-  // // get feels like
-  // const feelsLike = kToF(obj.main.feels_like)
-  // const fahrenheitRounded = Math.round(kToF(obj.main.temp))
-
-
- 
+  console.log(`${windSpeed}`)
+  console.log(`${weatherDesc}`) 
+  console.log(`${weatherDescSub}`)
 
   clearInputValue()
 }
