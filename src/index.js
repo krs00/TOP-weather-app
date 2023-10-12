@@ -1,4 +1,4 @@
-import { getWeatherDataAsync } from "./modules/utils/weatherService";
+import { getWeatherDataAsync, processWeatherData } from "./modules/utils/weatherService";
 import { kelToFahrenheit } from "./modules/utils/convert";
 
 
@@ -24,27 +24,9 @@ async function getInputValue() {
 
   const obj = await getWeatherDataAsync(cleanVal)
 
-  console.log(obj) 
-  
-  // get fahrenheit
-  const fahrenheit = kelToFahrenheit(obj.main.temp) 
-  
-  const feelsLike = kelToFahrenheit(obj.main.feels_like)
+  const processedData = processWeatherData(obj)
 
-  const humidity = obj.main.humidity
-
-  const windSpeed = obj.wind.speed
-
-  const weatherDesc = obj.weather[0].main 
-
-  const weatherDescSub = obj.weather[0].description
-
-  console.log(`${fahrenheit}`)
-  console.log(`${feelsLike}`)
-  console.log(`${humidity}`)
-  console.log(`${windSpeed}`)
-  console.log(`${weatherDesc}`) 
-  console.log(`${weatherDescSub}`)
+  console.log(processedData) 
 
   clearInputValue()
 }
