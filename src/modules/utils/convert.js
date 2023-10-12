@@ -4,3 +4,8 @@ export function kelToFahrenheit(kelvin) {
 
     return fahrenheit; 
   }
+
+export function getFirst5Characters(inputString) {
+
+  return inputString.slice(0, 5);
+} 
