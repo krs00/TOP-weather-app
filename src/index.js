@@ -1,10 +1,10 @@
+import { newWeatherCard } from "./modules/components/weatherCard";
 import { getWeatherDataAsync, processWeatherData } from "./modules/utils/weatherService";
-import { kelToFahrenheit } from "./modules/utils/convert";
 
 
 const searchBtn = document.querySelector('#search-btn')
 
-searchBtn.addEventListener('click', getInputValue)
+searchBtn.addEventListener('click', handleInputClick)
 
 
 
@@ -17,8 +17,8 @@ function cleanInput(input) {
 }
 
 
-// gets input value from user on btn click
-async function getInputValue() {
+async function handleInputClick() {
+  clearCardContainer() 
   const value = document.querySelector('#search-input').value
   const cleanVal = cleanInput(value)
 
@@ -26,8 +26,10 @@ async function getInputValue() {
 
   const processedData = processWeatherData(obj)
 
-  console.log(processedData) 
+  console.log(processedData)
 
+  newWeatherCard(processedData)
+ 
   clearInputValue()
 }
 
@@ -37,8 +39,7 @@ function clearInputValue() {
   searchInput.value = ''
 }
 
-
-
-// getWeatherData('portland')
-
-
+function clearCardContainer() {
+  const container = document.querySelector('#card-container')
+  container.innerHTML = ''
+}
