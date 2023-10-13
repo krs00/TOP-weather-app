@@ -1,7 +1,4 @@
-import { getFirst5Characters, kelToFahrenheit } from "./convert"
-
-
-const apiKey = '' 
+import { getFirst5Characters, kelToFahrenheit } from "./convert"  
 
 export async function getWeatherDataAsync(city) {
 
