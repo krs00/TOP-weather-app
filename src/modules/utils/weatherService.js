@@ -1,23 +1,42 @@
 import { getFirst5Characters, kelToFahrenheit } from "./convert"
 
 
-const apiKey = ''
+const apiKey = '' 
 
 export async function getWeatherDataAsync(city) {
 
+   try {
    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`, { mode: 'cors' })
 
-   
+   if (!response.ok) {
+      const errorCode = response.status;
+      throw new Error(`Network response was not ok (Status Code: ${errorCode})`);
+   }
+
 
    const data = await response.json()
+   return data } catch (error) {
 
-   return data
+      console.error('API call failed:', error)
+      const errorCode = extractErrorCode(error.message);
+
+      if (errorCode === '404') {
+         alert('Error: City not found!')
+      }
+
+      else if (errorCode === 'Unknown') {
+         alert('Error: Failed to fetch! Is there a network issue?')
+      }
+
+      else if (errorCode === '401') {
+         alert('Error: You not even hitting the API bro')
+      }
+
+   }
 }
 
 export function processWeatherData(obj) {
-
    const { main, wind, weather } = obj;
-
    const fahrenheitLong = kelToFahrenheit(main.temp).toString()
    const fahrenheit = getFirst5Characters(fahrenheitLong)
 
@@ -37,3 +56,12 @@ export function processWeatherData(obj) {
    };
 }
 
+
+function extractErrorCode(errorMessage) {
+  
+   const match = errorMessage.match(/Status Code: (\d+)/);
+   if (match) {
+     return match[1];
+   }
+   return 'Unknown';
+ }
