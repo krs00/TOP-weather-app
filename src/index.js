@@ -1,11 +1,16 @@
 import { newWeatherCard } from "./modules/components/weatherCard";
 import { getWeatherDataAsync, processWeatherData } from "./modules/utils/weatherService";
 
-
+const inputField = document.querySelector('#search-input')
 const searchBtn = document.querySelector('#search-btn')
 
 searchBtn.addEventListener('click', handleInputClick)
 
+inputField.addEventListener('keypress', function(event) {
+  if (event.key === 'Enter') {
+    handleInputClick();
+  }
+});
 
 
 
@@ -24,13 +29,13 @@ async function handleInputClick() {
 
   const obj = await getWeatherDataAsync(cleanVal)
 
+  console.log(obj)
+
   const processedData = processWeatherData(obj)
 
   console.log(processedData)
 
   newWeatherCard(processedData)
- 
-  clearInputValue()
 }
 
 
