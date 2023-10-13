@@ -27,15 +27,20 @@ async function handleInputClick() {
   const value = document.querySelector('#search-input').value
   const cleanVal = cleanInput(value)
 
+  if (cleanVal === "") {
+    return 
+  }
+
   const obj = await getWeatherDataAsync(cleanVal)
 
-  console.log(obj)
+  if (obj === undefined) {
+    return
+  }
 
-  const processedData = processWeatherData(obj)
-
-  console.log(processedData)
-
-  newWeatherCard(processedData)
+  else {
+    const processedData = processWeatherData(obj)
+    newWeatherCard(processedData)
+  }
 }
 
 
