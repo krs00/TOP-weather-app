@@ -13,10 +13,11 @@ export function newWeatherCard(obj) {
 
     // create description box
 
-     const descContainer = document.createElement('div')
-     descContainer.id = 'desc-container'
+    const descContainer = document.createElement('div')
+    descContainer.classList.add('center') 
+    descContainer.id = 'desc-container'
  
-     body.appendChild(descContainer)
+    body.appendChild(descContainer)
 
     // finish text elements 
 
@@ -34,18 +35,20 @@ export function newWeatherCard(obj) {
 
     // descriptions in the get appended to container
 
-    const weatherDesc = createText(`${obj.weatherDesc} - `, 'card-weather-desc')
+    const weatherDesc = createText(`${obj.weatherDesc} ◔̯`, 'card-weather-desc')
     descContainer.appendChild(weatherDesc)
 
-    const weatherDescSub = createText(` ${obj.weatherDescSub}`, 'card-weather-desc-sub')
+    const weatherDescSub = createText(`${obj.weatherDescSub}`, 'card-weather-desc-sub')
     descContainer.appendChild(weatherDescSub)
 
 
     container.appendChild(body)
+    body.classList.add('fade-in')
 }
 
 function createText(innerText, id) {
     const textElement = document.createElement('p')
+    textElement.classList.add('card-text')
     textElement.id = id
     textElement.innerText = innerText
 
