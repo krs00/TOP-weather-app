@@ -13,7 +13,6 @@ inputField.addEventListener('keypress', function(event) {
 });
 
 
-
 // cleans up input from user to feed it into fetch url
 function cleanInput(input) {
   const inputStr = String(input)
@@ -30,25 +29,21 @@ async function handleInputClick() {
   if (cleanVal === "") {
     return 
   }
-
   const obj = await getWeatherDataAsync(cleanVal)
-
   if (obj === undefined) {
     return
   }
-
   else {
     const processedData = processWeatherData(obj)
     newWeatherCard(processedData)
   }
 }
 
-
 function clearInputValue() {
   const searchInput = document.querySelector('#search-input')
   searchInput.value = ''
 }
-
+ 
 function clearCardContainer() {
   const container = document.querySelector('#card-container')
   container.innerHTML = ''
