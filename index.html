@@ -1,26 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./public/ness.png" />
     <link rel="stylesheet" type="text/css" href="./src/styles/main.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="module" src="./src/index.js" ></script> 
+    <script type="module" src="./src/index.js"></script>
     <title>weather app</title>
   </head>
   <body>
 
 
-    <label for="search-input" class="">please enter a city:</label>
-    <div class="">
-      <input id="search-input" class="" />
+    <div class="center">
+      <div id="page-wrapper">
+
+        <label for="search-input" class="header-text">enter a city!</label>
+        <div class="center">
+          <input id="search-input" class="search-input" />
+        </div>
+
+        <div class="center">
+          <button id="search-btn" class="search-btn">get weather!</button>
+        </div>
+
+        <div id="card-container" class="center"></div>
+      </div>
     </div>
-
-    <button id="search-btn">get weather!</button>
-
-    <div id="card-container">
-
-    </div>
-
   </body>
 </html>
