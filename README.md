@@ -4,7 +4,7 @@
 
 ## Live Demo
  
-[Live Demo]()
+[Live Demo](https://weather-krs00.netlify.app/)
 
 ## Technologies Used
 
